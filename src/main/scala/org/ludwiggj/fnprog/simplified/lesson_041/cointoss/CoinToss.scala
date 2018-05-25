@@ -1,4 +1,4 @@
-package org.ludwiggj.fnprog.simplified.lesson_041.games
+package org.ludwiggj.fnprog.simplified.lesson_041.cointoss
 
 import scala.annotation.tailrec
 import scala.io.StdIn
