@@ -1,0 +1,1 @@
+Based on https://kubuszok.com/2018/scala-fud-faq-for-newbies/#is-shapeless-useful-i-found-no-info-what-its-really-for
