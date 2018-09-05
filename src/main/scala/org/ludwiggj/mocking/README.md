@@ -1,0 +1,1 @@
+https://hackernoon.com/avoiding-mocks-in-scalatest-940bb8bfdb10
