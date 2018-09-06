@@ -14,5 +14,6 @@ libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
 libraryDependencies ++= Seq(
   "com.chuusai" %% "shapeless" % "2.3.3",
   "org.mockito" % "mockito-core" % "2.8.9",
-  "org.scalatest" %% "scalatest" % "3.0.4" % Test
+  "org.scalatest" %% "scalatest" % "3.0.4" % Test,
+  "org.slf4j" % "slf4j-log4j12" % "1.7.16"
 )

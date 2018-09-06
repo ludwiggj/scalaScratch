@@ -1,0 +1,3 @@
+package org.ludwiggj.serialization.shenanigans.batch
+
+trait BatchRunnerModule extends LazyLoggingModule
