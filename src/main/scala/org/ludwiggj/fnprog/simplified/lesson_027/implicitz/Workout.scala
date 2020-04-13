@@ -16,21 +16,21 @@ class Employer(name: String) extends Person(name) {
 
 object Workout {
   def main(args: Array[String]): Unit = {
-    def printPerson(b: Boolean)(implicit p: Person) = if (b) println(p)
+    def printPerson(b: Boolean)(implicit p: Person): Unit = if (b) println(p)
 
-    implicit val p = new Person("person")
-    implicit val e = new Employee("employee")
+    implicit val p: Person = new Person("person")
+    implicit val e: Employee = new Employee("employee")
 
-    printPerson(true)
+    // Following prints Employee
+    printPerson(b = true)
 
     // Following results in error
     // Error:(27, 16) ambiguous implicit values:
     // both value r of type org.ludwiggj.fnprog.simplified.implicitz.Employer
     // and value e of type org.ludwiggj.fnprog.simplified.implicitz.Employee
     // match expected type org.ludwiggj.fnprog.simplified.implicitz.Person
-    //    printPerson(true)
 
-    // implicit val r = new Employer("employer")
-    // printPerson(true)
+     // implicit val r: Employer = new Employer("employer")
+     // printPerson(b = true)
   }
 }

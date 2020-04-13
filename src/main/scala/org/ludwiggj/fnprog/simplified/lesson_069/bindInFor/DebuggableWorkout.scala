@@ -1,9 +1,9 @@
-package org.ludwiggj.fnprog.simplified.lesson_64_bind.debuggable
+package org.ludwiggj.fnprog.simplified.lesson_069.bindInFor
 
 case class Debuggable(value: Int, message: String) {
-  def map[B](f: Int => Int): Debuggable = Debuggable(f(value), this.message)
+  def map(f: Int => Int): Debuggable = Debuggable(f(this.value), this.message)
 
-  def flatMap[B](f: Int => Debuggable): Debuggable = {
+  def flatMap(f: Int => Debuggable): Debuggable = {
     val next = f(value)
     Debuggable(next.value, s"$message\n${next.message}")
   }
@@ -14,17 +14,17 @@ object DebuggableExample {
 
     def f(a: Int): Debuggable = {
       val result = a * 2
-      Debuggable(result, s"f result: $result.")
+      Debuggable(result,  s"f: a ($a) * 2 = $result.")
     }
 
     def g(a: Int): Debuggable = {
       val result = a * 3
-      Debuggable(result, s"g result: $result.")
+      Debuggable(result,  s"g: a ($a) * 3 = $result.")
     }
 
     def h(a: Int): Debuggable = {
       val result = a * 4
-      Debuggable(result, s"h result: $result.")
+      Debuggable(result,  s"h: a ($a) * 4 = $result.")
     }
 
     val finalResult = for {

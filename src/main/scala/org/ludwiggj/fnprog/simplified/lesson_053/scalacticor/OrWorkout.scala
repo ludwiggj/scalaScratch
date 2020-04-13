@@ -15,10 +15,15 @@ object OrWorkout {
     println(makeInt("1"))
     println(makeInt("boo"))
 
-    makeInt("11") match {
-      case Good(i) => println("Answer: " + i)
-      case Bad(msg) => println("Error: " + msg)
+    def makeInt2(s: String): Unit = {
+      makeInt(s) match {
+        case Good(i) => println("Answer: " + i)
+        case Bad(msg) => println("Error: " + msg)
+      }
     }
+
+    makeInt2("23")
+    makeInt2("wibble")
 
     val result = for {
       a <- makeInt("1")

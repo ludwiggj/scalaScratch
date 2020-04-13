@@ -1,4 +1,4 @@
-package org.ludwiggj.fnprog.simplified.lesson_64_bind.wrapper
+package org.ludwiggj.fnprog.simplified.lesson_066.wrapper
 
 class Wrapper[Int](value: Int) {
   def map(f: Int => Int): Wrapper[Int] = new Wrapper(f(value))
@@ -8,7 +8,7 @@ class Wrapper[Int](value: Int) {
   override def toString: String = s"Wrapper($value)"
 }
 
-object Wrapper {
+object WrapperWorkout {
   def main(args: Array[String]): Unit = {
     println(for {i <- new Wrapper(1)} yield i * 2)
 

@@ -1,6 +1,6 @@
-package org.ludwiggj.fnprog.simplified.lesson_64_bind
+package org.ludwiggj.fnprog.simplified.lesson_064.bind
 
-object BindExample {
+object BindWorkout {
   def main(args: Array[String]): Unit = {
 //    def f(a: Int): (Int, String) = ???
 //    def g(a: Int): (Int, String) = ???
@@ -8,17 +8,16 @@ object BindExample {
 
     def f(a: Int): (Int, String) = {
       val result = a * 2
-      (result, s"f result: $result.")
+      (result, s"f result: $result")
     }
     def g(a: Int): (Int, String) = {
       val result = a * 3
-      (result, s"g result: $result.")
+      (result, s"g result: $result")
     }
     def h(a: Int): (Int, String) = {
       val result = a * 4
-      (result, s"h result: $result.")
+      (result, s"h result: $result")
     }
-
 
     def bind(f: Int => (Int, String), previousRes: (Int, String)): (Int, String) = {
       val (intRes, stringRes) = f(previousRes._1)
@@ -26,8 +25,8 @@ object BindExample {
     }
 
     val fResult: (Int, String) = f(100)
-    val gResult = bind(g, fResult)
-    val hResult = bind(h, gResult)
+    val gResult: (Int, String) = bind(g, fResult)
+    val hResult: (Int, String) = bind(h, gResult)
 
     println(s"fResult: ${fResult}")
     println(s"gResult: ${gResult}")

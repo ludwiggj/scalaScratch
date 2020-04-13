@@ -30,7 +30,7 @@ object CopyWorkout {
 
   def main(args: Array[String]): Unit = {
 
-    val hannahsName = Name(
+    val hannahName = Name(
       firstName = "Hannah",
       mi = "C",
       lastName = "Jones"
@@ -38,13 +38,13 @@ object CopyWorkout {
 
     val hannah1 = User(
       id = 1,
-      name = hannahsName,
+      name = hannahName,
       phone = "907-555-1212",
       email = "hannah@hannahjones.com",
       billingInfo = BillingInfo(
         creditCards = Seq(
           CreditCard(
-            name = hannahsName,
+            name = hannahName,
             number = "1111111111111111",
             month = 3,
             year = 2020,
@@ -68,7 +68,7 @@ object CopyWorkout {
     println(s"Hannah (new surname): $hannah3")
 
     // Update credit card with new name
-    val oldCC = hannah3.billingInfo.creditCards(0)
+    val oldCC = hannah3.billingInfo.creditCards.head
     val newCC = oldCC.copy(name = newName)
     val newCCs = Seq(newCC)
     val hannah4 = hannah3.copy(billingInfo = BillingInfo(newCCs))

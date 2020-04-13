@@ -45,16 +45,16 @@ object OrEveryWorkout {
   def eitherExample(): Unit = {
     def parseName(input: String): Either[String, String] = {
       val trimmed = input.trim
-      if (!trimmed.isEmpty) Right(trimmed) else Left(s""""${input}" is not a valid name""")
+      if (!trimmed.isEmpty) Right(trimmed) else Left(s""""$input" is not a valid name""")
     }
 
     def parseAge(input: String): Either[String, Int] = {
       try {
         val age = input.trim.toInt
-        if (age >= 0) Right(age) else Left(s""""${age}" is not a valid age""")
+        if (age >= 0) Right(age) else Left(s""""$age" is not a valid age""")
       }
       catch {
-        case _: NumberFormatException => Left(s""""${input}" is not a valid integer""")
+        case _: NumberFormatException => Left(s""""$input" is not a valid integer""")
       }
     }
 
@@ -82,16 +82,16 @@ object OrEveryWorkout {
 
     def parseName(input: String): String Or ErrorMessage = {
       val trimmed = input.trim
-      if (!trimmed.isEmpty) Good(trimmed) else Bad(s""""${input}" is not a valid name""")
+      if (!trimmed.isEmpty) Good(trimmed) else Bad(s""""$input" is not a valid name""")
     }
 
     def parseAge(input: String): Int Or ErrorMessage = {
       try {
         val age = input.trim.toInt
-        if (age >= 0) Good(age) else Bad(s""""${age}" is not a valid age""")
+        if (age >= 0) Good(age) else Bad(s""""$age" is not a valid age""")
       }
       catch {
-        case _: NumberFormatException => Bad(s"""${input}" is not a valid integer""")
+        case _: NumberFormatException => Bad(s""""$input" is not a valid integer""")
       }
     }
 
@@ -119,16 +119,16 @@ object OrEveryWorkout {
 
     def parseName(input: String): String Or One[ErrorMessage] = {
       val trimmed = input.trim
-      if (!trimmed.isEmpty) Good(trimmed) else Bad(One(s""""${input}" is not a valid name"""))
+      if (!trimmed.isEmpty) Good(trimmed) else Bad(One(s""""$input" is not a valid name"""))
     }
 
     def parseAge(input: String): Int Or One[ErrorMessage] = {
       try {
         val age = input.trim.toInt
-        if (age >= 0) Good(age) else Bad(One(s""""${age}" is not a valid age"""))
+        if (age >= 0) Good(age) else Bad(One(s""""$age" is not a valid age"""))
       }
       catch {
-        case _: NumberFormatException => Bad(One(s""""${input}" is not a valid integer"""))
+        case _: NumberFormatException => Bad(One(s""""$input" is not a valid integer"""))
       }
     }
 
@@ -138,7 +138,7 @@ object OrEveryWorkout {
       val name = parseName(inputName)
       val age = parseAge(inputAge)
       withGood(name, age) {
-        Person(_, _)
+        Person
       }
     }
 

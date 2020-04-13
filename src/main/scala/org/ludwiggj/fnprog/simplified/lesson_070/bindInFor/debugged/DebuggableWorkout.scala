@@ -1,8 +1,8 @@
-package org.ludwiggj.fnprog.simplified.lesson_64_bind.debuggable
+package org.ludwiggj.fnprog.simplified.lesson_070.bindInFor.debugged
 
-case class DebuggableSquared(value: Int, msg: String) {
+case class Debuggable(value: Int, msg: String) {
 
-  def map(f: Int => Int): DebuggableSquared = {
+  def map(f: Int => Int): Debuggable = {
     println(s"\n>>>> entered map $value >>>>")
     println(s"map (b4): this val: ${value}")
     println(s"map (b4): this msg: (${msg})")
@@ -11,10 +11,10 @@ case class DebuggableSquared(value: Int, msg: String) {
     // there is no `nextValue.msg`
     println(s"map (after): next val: ${nextValue}")
     println("<<<< map exiting <<<<\n")
-    DebuggableSquared(nextValue, msg)
+    Debuggable(nextValue, msg)
   }
 
-  def flatMap(f: Int => DebuggableSquared): DebuggableSquared = {
+  def flatMap(f: Int => Debuggable): Debuggable = {
     println(s"\n>>>> entered fmap $value >>>>")
     println(s"fmap (b4): this val: ${value}")
     println(s"fmap (b4): this msg: (${msg})")
@@ -24,31 +24,31 @@ case class DebuggableSquared(value: Int, msg: String) {
     println(s"fmap (after): this msg: (${msg})")
     println(s"fmap (after): next msg: \n(${nextValue.msg})")
     println("<<<< fmap exiting <<<<\n")
-    DebuggableSquared(nextValue.value, msg + "\n" + nextValue.msg)
+    Debuggable(nextValue.value, msg + "\n" + nextValue.msg)
   }
 }
 
-object DebuggableSquaredSquaredExample {
+object DebuggableWorkout {
 
-  def f(a: Int): DebuggableSquared = {
-    println(s"\n[Calcuating f(a = $a)] (Double)")
+  def f(a: Int): Debuggable = {
+    println(s"\n[f(a = $a)] (Double)")
     val result = a * 2
-    DebuggableSquared(result, s"f: input: $a, result: $result")
+    Debuggable(result, s"f: input: $a, result: $result")
   }
 
-  def g(a: Int): DebuggableSquared = {
-    println(s"\n[Calcuating g(a = $a)] (Treble)")
+  def g(a: Int): Debuggable = {
+    println(s"\n[g(a = $a)] (Treble)")
     val result = a * 3
-    DebuggableSquared(result, s"g: input: $a, result: $result")
+    Debuggable(result, s"g: input: $a, result: $result")
   }
 
-  def h(a: Int): DebuggableSquared = {
-    println(s"\n[Calcuating h(a = $a)] (Quadruple)")
+  def h(a: Int): Debuggable = {
+    println(s"\n[h(a = $a)] (Quadruple)")
     val result = a * 4
-    DebuggableSquared(result, s"h: input: $a, result: $result")
+    Debuggable(result, s"h: input: $a, result: $result")
   }
 
-  def displayResult(ds: DebuggableSquared): Unit = {
+  def displayResult(ds: Debuggable): Unit = {
     println("\n----- FINAL RESULT -----")
     println(s"final value: ${ds.value}")
     println(s"final msg: \n${ds.msg}")

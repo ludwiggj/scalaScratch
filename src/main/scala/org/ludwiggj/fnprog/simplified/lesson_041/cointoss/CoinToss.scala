@@ -5,13 +5,13 @@ import scala.io.StdIn
 import scala.util.Random
 
 object CoinToss {
-  def showPrompt: Unit = {
+  def showPrompt(): Unit = {
     print("\n(h)eads, (t)ails, or (q)uit: ")
   }
 
   def getUserInput: String = StdIn.readLine.trim.toUpperCase
 
-  def printableFlipResult(flip: String) = flip match {
+  def printableFlipResult(flip: String): String = flip match {
     case "H" => "Heads"
     case "T" => "Tails"
   }
@@ -25,10 +25,10 @@ object CoinToss {
     printGameState(gameState)
   }
 
-  def printGameOver: Unit = println("\n=== GAME OVER ===")
+  def printGameOver(): Unit = println("\n=== GAME OVER ===")
 
   // returns "H" for heads, "T" for tails
-  def tossCoin(r: Random) = {
+  def tossCoin(r: Random): String = {
     val i = r.nextInt(2)
     i match {
       case 0 => "H"
@@ -38,9 +38,10 @@ object CoinToss {
 
   @tailrec
   def mainLoop(s: GameState, r: Random): Unit = {
-    showPrompt
-    getUserInput match {
-      case guess =>
+    showPrompt()
+    val guess = getUserInput
+    guess match {
+      case "H" | "T" =>
         val coinState = tossCoin(r)
         val newGameState = if (guess == coinState) {
           s.copy(numCorrect = s.numCorrect + 1, numFlips = s.numFlips + 1)
@@ -52,7 +53,7 @@ object CoinToss {
 
       case _ =>
         // Assume q was typed...
-        printGameOver
+        printGameOver()
         printGameState(s)
     }
   }

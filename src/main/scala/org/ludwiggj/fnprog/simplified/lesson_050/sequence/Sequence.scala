@@ -1,4 +1,4 @@
-package org.ludwiggj.fnprog.simplified.lesson_050.customfor
+package org.ludwiggj.fnprog.simplified.lesson_050.sequence
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -87,5 +87,11 @@ object Workout {
     } yield myFriend
 
     mutualFriends.foreach(println)
+
+    // map vs. flatmap
+    val fruits = Seq("apple", "banana", "orange")
+
+    println(s"Map:\n${fruits.map(_.toUpperCase)}")
+    println(s"FlatMap:\n${fruits.flatMap(_.toUpperCase)}")
   }
 }
