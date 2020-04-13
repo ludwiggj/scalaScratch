@@ -1,4 +1,4 @@
-package org.ludwiggj.fnprog.simplified.lesson_76.io
+package org.ludwiggj.fnprog.simplified.lesson_076.io
 
 package object monad {
   object eager {

@@ -1,11 +1,22 @@
-package org.ludwiggj.fnprog.simplified.lesson_76.io.monad
+package org.ludwiggj.fnprog.simplified.lesson_076.io.monad
 
 class IOLazy[A] private(constructorCodeBlock: => A) {
-  def run: A = constructorCodeBlock
+  def run: A = {
+    println("IOLazy run")
+    constructorCodeBlock
+  }
 
-  def flatMap[B](f: A => IOLazy[B]): IOLazy[B] = IOLazy(f(run).run)
+  // This is lazy because the whole of f(this.run).run is treated as the pass-by-name parameter
+  def flatMap[B](f: A => IOLazy[B]): IOLazy[B] = {
+    println("IOLazy flatMap")
+    IOLazy(f(this.run).run)
+  }
 
-  def map[B](f: A => B): IOLazy[B] = IOLazy(f(run))
+  // This is lazy because the whole of f(this.run) is treated as the pass-by-name parameter
+  def map[B](f: A => B): IOLazy[B] = {
+    println("IOLazy map")
+    IOLazy(f(this.run))
+  }
 }
 
 object IOLazy {

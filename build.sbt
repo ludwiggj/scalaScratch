@@ -15,5 +15,15 @@ libraryDependencies ++= Seq(
   "com.chuusai" %% "shapeless" % "2.3.3",
   "org.mockito" % "mockito-core" % "2.8.9",
   "org.scalatest" %% "scalatest" % "3.0.4" % Test,
-  "org.slf4j" % "slf4j-log4j12" % "1.7.16"
+  "org.slf4j" % "slf4j-log4j12" % "1.7.16",
+  "org.typelevel" %% "cats" % "0.9.0",
+  "org.typelevel" %% "cats-effect" % "1.3.0" withSources() withJavadoc()
 )
+
+scalacOptions ++= Seq(
+  "-feature",
+  "-deprecation",
+  "-unchecked",
+  "-language:postfixOps",
+  "-language:higherKinds",
+  "-Ypartial-unification")

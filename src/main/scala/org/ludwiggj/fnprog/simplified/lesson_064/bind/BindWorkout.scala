@@ -28,8 +28,8 @@ object BindWorkout {
     val gResult: (Int, String) = bind(g, fResult)
     val hResult: (Int, String) = bind(h, gResult)
 
-    println(s"fResult: ${fResult}")
-    println(s"gResult: ${gResult}")
-    println(s"hResult: ${hResult}")
+    println(s"fResult: $fResult")
+    println(s"gResult: $gResult")
+    println(s"hResult: $hResult")
   }
 }

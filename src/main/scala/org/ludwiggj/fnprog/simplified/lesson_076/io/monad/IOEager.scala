@@ -1,25 +1,43 @@
-package org.ludwiggj.fnprog.simplified.lesson_76.io.monad
+package org.ludwiggj.fnprog.simplified.lesson_076.io.monad
 
 class IOEager[A] private(constructorCodeBlock: => A) {
-  def run: A = constructorCodeBlock
-
-  // def flatMapOrig[B](f: A => IO[B]): IO[B] = IO(f(run).run)
-
-  // This is just an expanded version of flatMapOrig
-  def flatMap[B](customAlgorithm: A => IOEager[B]): IOEager[B] = {
-    val result1: IOEager[B] = customAlgorithm(run)
-    val result2: B = result1.run
-    IOEager(result2)
+  // run is just a nice handle to the "by-name" code block used to instantiate the class (constructorCodeBlock)
+  def run: A = {
+    println("IOEager run")
+    constructorCodeBlock
   }
 
-  // This was original version
+  // (1) flatMap
 
-  // def map[B](f: A => B): IO[B] = flatMap(a => IO(f(a)))
+  // NOTE: This doesn't work eagerly. It's actually the implementation for the lazy version!
+  //       This is because the whole of f(this.run).run is treated as the pass-by-name parameter
 
-  // Which expands to...
-  def map[B](f: A => B): IOEager[B] = IOEager(IOEager(f(run)).run)
+  //  def flatMap[B](f: A => IOEager[B]): IOEager[B] = {
+  //    IOEager(f(this.run).run)
+  //  }
 
-  // Which is eager as it makes an extra call to run to kick it off
+  // This does work eagerly
+  def flatMap[B](f: A => IOEager[B]): IOEager[B] = {
+    println("IOEager flatMap")
+    f(this.run)
+  }
+
+  // (2) Map
+  def map[B](f: A => B): IOEager[B] = {
+    println("IOEager map")
+    val b = f(this.run)
+    IOEager(b)
+  }
+
+  // Alternative versions:
+
+  // def map[B](f: A => B): IOEager[B] = {
+  //   flatMap(a => IOEager(f(a)))
+  // }
+
+  //  def map[B](f: A => B): IOEager[B] = {
+  //    IOEager(IOEager(f(this.run)).run)
+  //  }
 }
 
 object IOEager {

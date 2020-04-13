@@ -1,6 +1,6 @@
 package org.ludwiggj.fnprog.simplified.lesson_089.iostate
 
-import org.ludwiggj.fnprog.simplified.lesson_083.state.monad.take2.State
+import org.ludwiggj.fnprog.simplified.lesson_085.state.monad.State
 
 object TryStateAndIoTogether extends App {
   // State code

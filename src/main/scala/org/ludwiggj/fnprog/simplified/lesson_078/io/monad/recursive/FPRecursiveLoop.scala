@@ -1,4 +1,6 @@
-package org.ludwiggj.fnprog.simplified.lesson_76.io.monad
+package org.ludwiggj.fnprog.simplified.lesson_078.io.monad.recursive
+
+import org.ludwiggj.fnprog.simplified.lesson_076.io.monad.{IOEager, IOLazy, eager, lazee}
 
 object FPRecursiveLoop extends App {
 
@@ -26,21 +28,23 @@ object FPRecursiveLoop extends App {
     loop
   }
 
-  def anotherLoop(): Unit = {
+  def eagerLoopDesugared(): Unit = {
     import eager._
-    def loop: IOEager[Unit] = return eager.putStrLn("Oy! Type something: ")
-      .flatMap({ case _ => getLine
-        .flatMap((input: String) => eager.putStrLn(s"You spit '$input'.")
-          .flatMap { case _ => (if (input == "quit") IOEager(Unit) else loop)
-            .map { case _ => () }
-          }
-        )
+    def loop: IOEager[Unit] = eager.putStrLn("Oy! Type something: ")
+      .flatMap({ _ =>
+        getLine
+          .flatMap(input => eager.putStrLn(s"You spit '$input'.")
+            .flatMap { _ =>
+              (if (input == "quit") IOEager(Unit) else loop)
+                .map(_ => ())
+            }
+          )
       })
 
     loop
   }
 
-  //  lazyLoop()
+  lazyLoop()
   //  eagerLoop()
-  anotherLoop()
+  //  eagerLoopDesugared()
 }

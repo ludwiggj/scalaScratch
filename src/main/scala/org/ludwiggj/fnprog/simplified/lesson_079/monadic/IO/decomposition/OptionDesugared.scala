@@ -1,4 +1,4 @@
-package org.ludwiggj.monadic.IO.decomposition
+package org.ludwiggj.fnprog.simplified.lesson_079.monadic.IO.decomposition
 
 object OptionDesugared {
 

@@ -1,4 +1,4 @@
-package org.ludwiggj.monadic.IO.take2
+package org.ludwiggj.fnprog.simplified.lesson_079.monadic.IO.take2
 
 object Example {
   def ioComprehension: Pure.IO[Int] = {
@@ -10,11 +10,9 @@ object Example {
     } yield x
   }
 
-  import org.ludwiggj.monadic.IO.take2.Pure.IO
-
   def ioComprehensionDesugared: Pure.IO[Int] = {
     Pure.println("Starting work now.").flatMap { _ =>
-      IO.point(1 + 2 + 3).flatMap { i =>
+      Pure.IO.point(1 + 2 + 3).flatMap { i =>
         Pure.println("All done. Home time.").map { _ =>
           i
         }

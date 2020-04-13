@@ -1,4 +1,4 @@
-package org.ludwiggj.monadic.IO.take1
+package org.ludwiggj.fnprog.simplified.lesson_079.monadic.IO.take1
 
 object Workout {
   def println(msg: String): () => Unit =

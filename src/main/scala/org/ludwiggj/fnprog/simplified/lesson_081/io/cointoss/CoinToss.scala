@@ -4,29 +4,36 @@ import scala.io.StdIn
 import scala.util.Random
 
 object CoinToss {
+
+  // impure
   def showPrompt(): Unit = {
     print("\n(h)eads, (t)ails, or (q)uit: ")
   }
 
-  def getUserInput(): String = StdIn.readLine.trim.toUpperCase
+  // impure
+  private def userInput(): String = StdIn.readLine.trim.toUpperCase
 
-  def printableFlipResult(flip: String) = flip match {
+  private def printableFlipResult(flip: String) = flip match {
     case "H" => "Heads"
     case "T" => "Tails"
   }
 
-  def printGameState(gameState: GameState): Unit = {
+  // impure
+  private def printGameState(gameState: GameState): Unit = {
     println(s"#Flips: ${gameState.numFlips}, #Correct: ${gameState.numCorrect}")
   }
 
-  def printGameState(printableResult: String, gameState: GameState): Unit = {
+  // impure
+  private def printGame(printableResult: String, gameState: GameState): Unit = {
     print(s"Flip was $printableResult.")
     printGameState(gameState)
   }
 
-  def printGameOver(): Unit = println("\n=== GAME OVER ===")
+  // impure
+  private def printGameOver(): Unit = println("\n=== GAME OVER ===")
 
-  def tossCoin(r: Random) = {
+  // impure
+  private def tossCoin(r: Random): String = {
     val i = r.nextInt(2)
     i match {
       case 0 => "H"
@@ -37,7 +44,6 @@ object CoinToss {
   def createNewGameState(userInput: String,
                          coinTossResult: String,
                          gameState: GameState,
-                         random: Random,
                          newNumFlips: Int): GameState = {
     if (coinTossResult == userInput) {
       GameState(newNumFlips, gameState.numCorrect + 1)
@@ -48,7 +54,7 @@ object CoinToss {
 
   def mainLoop(gameState: GameState, random: Random): IO[Unit] = for {
     _ <- IO { showPrompt() }
-    userInput <- IO { getUserInput() }
+    userInput <- IO { userInput() }
     _ <- if (userInput == "H" || userInput == "T") for {
       // this first line is a hack;
       // a for-expression must begin with a generator
@@ -59,11 +65,10 @@ object CoinToss {
         userInput,
         coinTossResult,
         gameState,
-        random,
         newNumFlips
       )
       _ <- IO {
-        printGameState(
+        printGame(
           printableFlipResult(coinTossResult),
           newGameState
         )

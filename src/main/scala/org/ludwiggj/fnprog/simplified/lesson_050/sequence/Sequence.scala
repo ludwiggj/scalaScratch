@@ -83,7 +83,7 @@ object Workout {
     val mutualFriends = for {
       myFriend <- myFriends // generator
       adamsFriend <- adamsFriends // generator
-      if (myFriend.name == adamsFriend.name)
+      if myFriend.name == adamsFriend.name
     } yield myFriend
 
     mutualFriends.foreach(println)

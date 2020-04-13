@@ -4,24 +4,24 @@ case class Debuggable(value: Int, msg: String) {
 
   def map(f: Int => Int): Debuggable = {
     println(s"\n>>>> entered map $value >>>>")
-    println(s"map (b4): this val: ${value}")
-    println(s"map (b4): this msg: (${msg})")
+    println(s"map (b4): this val: $value")
+    println(s"map (b4): this msg: ($msg)")
     val nextValue = f(value) //Int
     println(s"<<<< leaving map $value <<<<\n")
     // there is no `nextValue.msg`
-    println(s"map (after): next val: ${nextValue}")
+    println(s"map (after): next val: $nextValue")
     println("<<<< map exiting <<<<\n")
     Debuggable(nextValue, msg)
   }
 
   def flatMap(f: Int => Debuggable): Debuggable = {
     println(s"\n>>>> entered fmap $value >>>>")
-    println(s"fmap (b4): this val: ${value}")
-    println(s"fmap (b4): this msg: (${msg})")
+    println(s"fmap (b4): this val: $value")
+    println(s"fmap (b4): this msg: ($msg)")
     val nextValue = f(value)
     println(s"<<<< leaving fmap $value <<<<\n")
     println(s"fmap (after): next val: ${nextValue.value}")
-    println(s"fmap (after): this msg: (${msg})")
+    println(s"fmap (after): this msg: ($msg)")
     println(s"fmap (after): next msg: \n(${nextValue.msg})")
     println("<<<< fmap exiting <<<<\n")
     Debuggable(nextValue.value, msg + "\n" + nextValue.msg)

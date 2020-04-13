@@ -1,4 +1,4 @@
-package org.ludwiggj.monadic.IO.take2
+package org.ludwiggj.fnprog.simplified.lesson_079.monadic.IO.take2
 
 object Pure {
 
